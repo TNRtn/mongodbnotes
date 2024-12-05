@@ -1,0 +1,1886 @@
+C:\Users\tallu>mongosh
+Current Mongosh Log ID: 674f93c7c1687a95decdcdf5
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.6
+Using MongoDB:          7.0.11
+Using Mongosh:          2.2.6
+mongosh 2.3.4 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-11-29T08:50:49.605+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+Warning: Found ~/.mongorc.js, but not ~/.mongoshrc.js. ~/.mongorc.js will not be loaded.
+  You may want to copy or rename ~/.mongorc.js to ~/.mongoshrc.js.
+test> db.help()
+
+  Database Class:
+
+    getMongo                                   Returns the current database connection
+    getName                                    Returns the name of the DB
+    getCollectionNames                         Returns an array containing the names of all collections in the current database.
+    getCollectionInfos                         Returns an array of documents with collection information, i.e. collection name and options, for the current database.
+    runCommand                                 Runs an arbitrary command on the database.
+    adminCommand                               Runs an arbitrary command against the admin database.
+    aggregate                                  Runs a specified admin/diagnostic pipeline which does not require an underlying collection.
+    getSiblingDB                               Returns another database without modifying the db variable in the shell environment.
+    getCollection                              Returns a collection or a view object that is functionally equivalent to using the db.<collectionName>.
+    dropDatabase                               Removes the current database, deleting the associated data files.
+    createUser                                 Creates a new user for the database on which the method is run. db.createUser() returns a duplicate user error if the user already exists on the database.
+    updateUser                                 Updates the user’s profile on the database on which you run the method. An update to a field completely replaces the previous field’s values. This includes updates to the user’s roles array.
+    changeUserPassword                         Updates a user’s password. Run the method in the database where the user is defined, i.e. the database you created the user.
+    logout                                     Ends the current authentication session. This function has no effect if the current session is not authenticated.
+    dropUser                                   Removes the user from the current database.
+    dropAllUsers                               Removes all users from the current database.
+    auth                                       Allows a user to authenticate to the database from within the shell.
+    grantRolesToUser                           Grants additional roles to a user.
+    revokeRolesFromUser                        Removes a one or more roles from a user on the current database.
+    getUser                                    Returns user information for a specified user. Run this method on the user’s database. The user must exist on the database on which the method runs.
+    getUsers                                   Returns information for all the users in the database.
+    createCollection                           Create new collection
+    createEncryptedCollection                  Creates a new collection with a list of encrypted fields each with unique and auto-created data encryption keys (DEKs). This is a utility function that internally utilises ClientEnryption.createEncryptedCollection.
+    createView                                 Create new view
+    createRole                                 Creates a new role.
+    updateRole                                 Updates the role’s profile on the database on which you run the method. An update to a field completely replaces the previous field’s values.
+    dropRole                                   Removes the role from the current database.
+    dropAllRoles                               Removes all roles from the current database.
+    grantRolesToRole                           Grants additional roles to a role.
+    revokeRolesFromRole                        Removes a one or more roles from a role on the current database.
+    grantPrivilegesToRole                      Grants additional privileges to a role.
+    revokePrivilegesFromRole                   Removes a one or more privileges from a role on the current database.
+    getRole                                    Returns role information for a specified role. Run this method on the role’s database. The role must exist on the database on which the method runs.
+    getRoles                                   Returns information for all the roles in the database.
+    currentOp                                  Runs an aggregation using $currentOp operator. Returns a document that contains information on in-progress operations for the database instance. For further information, see $currentOp.
+    killOp                                     Calls the killOp command. Terminates an operation as specified by the operation ID. To find operations and their corresponding IDs, see $currentOp or db.currentOp().
+    shutdownServer                             Calls the shutdown command. Shuts down the current mongod or mongos process cleanly and safely. You must issue the db.shutdownServer() operation against the admin database.
+    fsyncLock                                  Calls the fsync command. Forces the mongod to flush all pending write operations to disk and locks the entire mongod instance to prevent additional writes until the user releases the lock with a corresponding db.fsyncUnlock() command.
+    fsyncUnlock                                Calls the fsyncUnlock command. Reduces the lock taken by db.fsyncLock() on a mongod instance by 1.
+    version                                    returns the db version. uses the buildinfo command
+    serverBits                                 returns the db serverBits. uses the buildInfo command
+    isMaster                                   Calls the isMaster command
+    hello                                      Calls the hello command
+    serverBuildInfo                            returns the db serverBuildInfo. uses the buildInfo command
+    serverStatus                               returns the server stats. uses the serverStatus command
+    stats                                      returns the db stats. uses the dbStats command
+    hostInfo                                   Calls the hostInfo command
+    serverCmdLineOpts                          returns the db serverCmdLineOpts. uses the getCmdLineOpts command
+    rotateCertificates                         Calls the rotateCertificates command
+    printCollectionStats                       Prints the collection.stats for each collection in the db.
+    getProfilingStatus                         returns the db getProfilingStatus. uses the profile command
+    setProfilingLevel                          returns the db setProfilingLevel. uses the profile command
+    setLogLevel                                returns the db setLogLevel. uses the setParameter command
+    getLogComponents                           returns the db getLogComponents. uses the getParameter command
+    cloneDatabase                              deprecated, non-functional
+    cloneCollection                            deprecated, non-functional
+    copyDatabase                               deprecated, non-functional
+    commandHelp                                returns the db commandHelp. uses the passed in command with help: true
+    listCommands                               Calls the listCommands command
+    getLastErrorObj                            Calls the getLastError command
+    getLastError                               Calls the getLastError command
+    printShardingStatus                        Calls sh.status(verbose)
+    printSecondaryReplicationInfo              Prints secondary replicaset information
+    getReplicationInfo                         Returns replication information
+    printReplicationInfo                       Formats sh.getReplicationInfo
+    printSlaveReplicationInfo                  DEPRECATED. Use db.printSecondaryReplicationInfo
+    setSecondaryOk                             This method is deprecated. Use db.getMongo().setReadPref() instead
+    watch                                      Opens a change stream cursor on the database
+    sql                                        (Experimental) Runs a SQL query against Atlas Data Lake. Note: this is an experimental feature that may be subject to change in future releases.
+    checkMetadataConsistency                   Returns a cursor with information about metadata inconsistencies
+
+test>
+
+test> db.getMongo();
+mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.6
+test> db.getMongo(); /*name of current database*/
+mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.6
+test> db.getName();
+test
+test> db.getName();/*current database name*/
+test
+test> db.getCollectionNames();
+[]
+test> show dbs;
+admin      40.00 KiB
+config    108.00 KiB
+local      88.00 KiB
+practise  684.00 KiB
+project    44.00 KiB
+test> switch project;
+Uncaught:
+SyntaxError: Unexpected token, expected "(" (1:7)
+
+> 1 | switch project;
+    |        ^
+  2 |
+
+test> use project;
+switched to db project
+project> db.getCollections();
+TypeError: db.getCollections is not a function
+project> db.getCollectionNames();
+[ 'product' ]
+project> db.getCollectionNames();  /* return list of collections */
+[ 'product' ]
+project> db.getCollectionNames().forEach(print);
+product 0 [ 'product' ]
+
+project> db.getCollectionNames().forEach(print); /* list of cullection for current database*/
+product 0 [ 'product' ]
+
+project> printjson(db.getCollectionInfos());
+[
+  {
+    name: 'product',
+    type: 'collection',
+    options: {},
+    info: {
+      readOnly: false,
+      uuid: UUID('b1d2ac67-3c89-4882-93e7-db82fa6b2e4b')
+    },
+    idIndex: {
+      v: 2,
+      key: {
+        _id: 1
+      },
+      name: '_id_'
+    }
+  }
+]
+
+project> printjson(db.getCollectionInfos()); /* return matedata about collections*/
+[
+  {
+    name: 'product',
+    type: 'collection',
+    options: {},
+    info: {
+      readOnly: false,
+      uuid: UUID('b1d2ac67-3c89-4882-93e7-db82fa6b2e4b')
+    },
+    idIndex: {
+      v: 2,
+      key: {
+        _id: 1
+      },
+      name: '_id_'
+    }
+  }
+]
+
+project> db.runcommabd({ping:1});
+TypeError: db.runcommabd is not a function
+project> db.runCommabd({ping:1});
+TypeError: db.runCommabd is not a function
+project> db.runCommand({ping:1});
+{ ok: 1 }
+project> db.runcommand({ping:1});
+TypeError: db.runcommand is not a function
+project> db.runCommand({ping:1});/*states of database */
+{ ok: 1 }
+project> db.adminCommand({listDatabases: 1});
+{
+  databases: [
+    { name: 'admin', sizeOnDisk: Long('40960'), empty: false },
+    { name: 'config', sizeOnDisk: Long('110592'), empty: false },
+    { name: 'local', sizeOnDisk: Long('90112'), empty: false },
+    { name: 'practise', sizeOnDisk: Long('700416'), empty: false },
+    { name: 'project', sizeOnDisk: Long('45056'), empty: false }
+  ],
+  totalSize: Long('987136'),
+  totalSizeMb: Long('0'),
+  ok: 1
+}
+project> db.adminCommand({listDatabases: 1}); /* return list of all databases */
+{
+  databases: [
+    { name: 'admin', sizeOnDisk: Long('40960'), empty: false },
+    { name: 'config', sizeOnDisk: Long('110592'), empty: false },
+    { name: 'local', sizeOnDisk: Long('90112'), empty: false },
+    { name: 'practise', sizeOnDisk: Long('700416'), empty: false },
+    { name: 'project', sizeOnDisk: Long('45056'), empty: false }
+  ],
+  totalSize: Long('987136'),
+  totalSizeMb: Long('0'),
+  ok: 1
+}
+project> db.aggregate([{$currentOp: {allUsers: true}}]);
+MongoServerError[InvalidNamespace]: $currentOp must be run against the 'admin' database with {aggregate: 1}
+project> use admin;
+switched to db admin
+admin> db.aggregate([{$currentOp: {allUsers: true}}]);
+[
+  {
+    type: 'op',
+    host: 'TNR:27017',
+    desc: 'conn16',
+    connectionId: 16,
+    client: '127.0.0.1:55386',
+    appName: 'mongosh 2.2.6',
+    clientMetadata: {
+      application: { name: 'mongosh 2.2.6' },
+      driver: { name: 'nodejs|mongosh', version: '6.6.2|2.2.6' },
+      platform: 'Node.js v20.12.2, LE',
+      os: {
+        name: 'win32',
+        architecture: 'x64',
+        version: '10.0.14393',
+        type: 'Windows_NT'
+      }
+    },
+    active: true,
+    currentOpTime: '2024-12-04T05:13:23.277+05:30',
+    threaded: true,
+    opid: 1138265,
+    lsid: {
+      id: UUID('efe80896-d412-4429-9c73-9bce51f9fd8e'),
+      uid: Binary.createFromBase64('47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=', 0)
+    },
+    secs_running: Long('0'),
+    microsecs_running: Long('117'),
+    op: 'command',
+    ns: 'admin.$cmd.aggregate',
+    redacted: false,
+    command: {
+      aggregate: 1,
+      pipeline: [ { '$currentOp': { allUsers: true } } ],
+      cursor: {},
+      lsid: { id: UUID('efe80896-d412-4429-9c73-9bce51f9fd8e') },
+      '$db': 'admin'
+    },
+    queryFramework: 'classic',
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'TNR:27017',
+    desc: 'Checkpointer',
+    active: true,
+    currentOpTime: '2024-12-04T05:13:23.277+05:30',
+    opid: 1138022,
+    op: 'none',
+    ns: '',
+    redacted: false,
+    command: {},
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'TNR:27017',
+    desc: 'conn14',
+    connectionId: 14,
+    client: '127.0.0.1:55384',
+    appName: 'mongosh 2.2.6',
+    clientMetadata: {
+      application: { name: 'mongosh 2.2.6' },
+      driver: { name: 'nodejs|mongosh', version: '6.6.2|2.2.6' },
+      platform: 'Node.js v20.12.2, LE',
+      os: {
+        name: 'win32',
+        architecture: 'x64',
+        version: '10.0.14393',
+        type: 'Windows_NT'
+      }
+    },
+    active: true,
+    currentOpTime: '2024-12-04T05:13:23.277+05:30',
+    threaded: true,
+    opid: 1138153,
+    secs_running: Long('8'),
+    microsecs_running: Long('8648748'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    redacted: false,
+    command: {
+      hello: 1,
+      maxAwaitTimeMS: 10000,
+      topologyVersion: {
+        processId: ObjectId('6749330ac985b97acdf11a16'),
+        counter: Long('0')
+      },
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'TNR:27017',
+    desc: 'JournalFlusher',
+    active: true,
+    currentOpTime: '2024-12-04T05:13:23.277+05:30',
+    opid: 1138264,
+    op: 'none',
+    ns: '',
+    redacted: false,
+    command: {},
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'TNR:27017',
+    desc: 'conn1',
+    connectionId: 1,
+    client: '127.0.0.1:54973',
+    appName: 'MongoDB Compass',
+    clientMetadata: {
+      application: { name: 'MongoDB Compass' },
+      driver: { name: 'nodejs', version: '6.8.0' },
+      platform: 'Node.js v20.16.0, LE',
+      os: {
+        name: 'win32',
+        architecture: 'x64',
+        version: '10.0.22631',
+        type: 'Windows_NT'
+      }
+    },
+    active: true,
+    currentOpTime: '2024-12-04T05:13:23.277+05:30',
+    threaded: true,
+    opid: 1138215,
+    secs_running: Long('3'),
+    microsecs_running: Long('3689234'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    redacted: false,
+    command: {
+      hello: 1,
+      maxAwaitTimeMS: 10000,
+      topologyVersion: {
+        processId: ObjectId('6749330ac985b97acdf11a16'),
+        counter: Long('0')
+      },
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  }
+]
+admin> db.aggregate([{$currentOp: {allUsers: true}}]);/*pipeline for aggregation at the database level*/
+[
+  {
+    type: 'op',
+    host: 'TNR:27017',
+    desc: 'conn16',
+    connectionId: 16,
+    client: '127.0.0.1:55386',
+    appName: 'mongosh 2.2.6',
+    clientMetadata: {
+      application: { name: 'mongosh 2.2.6' },
+      driver: { name: 'nodejs|mongosh', version: '6.6.2|2.2.6' },
+      platform: 'Node.js v20.12.2, LE',
+      os: {
+        name: 'win32',
+        architecture: 'x64',
+        version: '10.0.14393',
+        type: 'Windows_NT'
+      }
+    },
+    active: true,
+    currentOpTime: '2024-12-04T05:14:03.456+05:30',
+    threaded: true,
+    opid: 1138774,
+    lsid: {
+      id: UUID('efe80896-d412-4429-9c73-9bce51f9fd8e'),
+      uid: Binary.createFromBase64('47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=', 0)
+    },
+    secs_running: Long('0'),
+    microsecs_running: Long('139'),
+    op: 'command',
+    ns: 'admin.$cmd.aggregate',
+    redacted: false,
+    command: {
+      aggregate: 1,
+      pipeline: [ { '$currentOp': { allUsers: true } } ],
+      cursor: {},
+      lsid: { id: UUID('efe80896-d412-4429-9c73-9bce51f9fd8e') },
+      '$db': 'admin'
+    },
+    queryFramework: 'classic',
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'TNR:27017',
+    desc: 'Checkpointer',
+    active: true,
+    currentOpTime: '2024-12-04T05:14:03.456+05:30',
+    opid: 1138022,
+    op: 'none',
+    ns: '',
+    redacted: false,
+    command: {},
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'TNR:27017',
+    desc: 'conn14',
+    connectionId: 14,
+    client: '127.0.0.1:55384',
+    appName: 'mongosh 2.2.6',
+    clientMetadata: {
+      application: { name: 'mongosh 2.2.6' },
+      driver: { name: 'nodejs|mongosh', version: '6.6.2|2.2.6' },
+      platform: 'Node.js v20.12.2, LE',
+      os: {
+        name: 'win32',
+        architecture: 'x64',
+        version: '10.0.14393',
+        type: 'Windows_NT'
+      }
+    },
+    active: true,
+    currentOpTime: '2024-12-04T05:14:03.456+05:30',
+    threaded: true,
+    opid: 1138661,
+    secs_running: Long('8'),
+    microsecs_running: Long('8821048'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    redacted: false,
+    command: {
+      hello: 1,
+      maxAwaitTimeMS: 10000,
+      topologyVersion: {
+        processId: ObjectId('6749330ac985b97acdf11a16'),
+        counter: Long('0')
+      },
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'TNR:27017',
+    desc: 'JournalFlusher',
+    active: true,
+    currentOpTime: '2024-12-04T05:14:03.456+05:30',
+    opid: 1138773,
+    op: 'none',
+    ns: '',
+    redacted: false,
+    command: {},
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  },
+  {
+    type: 'op',
+    host: 'TNR:27017',
+    desc: 'conn1',
+    connectionId: 1,
+    client: '127.0.0.1:54973',
+    appName: 'MongoDB Compass',
+    clientMetadata: {
+      application: { name: 'MongoDB Compass' },
+      driver: { name: 'nodejs', version: '6.8.0' },
+      platform: 'Node.js v20.16.0, LE',
+      os: {
+        name: 'win32',
+        architecture: 'x64',
+        version: '10.0.22631',
+        type: 'Windows_NT'
+      }
+    },
+    active: true,
+    currentOpTime: '2024-12-04T05:14:03.456+05:30',
+    threaded: true,
+    opid: 1138725,
+    secs_running: Long('3'),
+    microsecs_running: Long('3862966'),
+    op: 'command',
+    ns: 'admin.$cmd',
+    redacted: false,
+    command: {
+      hello: 1,
+      maxAwaitTimeMS: 10000,
+      topologyVersion: {
+        processId: ObjectId('6749330ac985b97acdf11a16'),
+        counter: Long('0')
+      },
+      '$db': 'admin'
+    },
+    numYields: 0,
+    locks: {},
+    waitingForLock: false,
+    lockStats: {},
+    waitingForFlowControl: false,
+    flowControlStats: {}
+  }
+]
+admin> let otherDB = db.getSiblingDB('anotherDatabase');
+
+admin> print(otherDB.getName());
+anotherDatabase
+
+admin> let otherDB = db.getSiblingDB('projects');
+
+admin> otherDB.getName();
+projects
+admin> let otherDB = db.getSiblingDB('projects');/*accening other database without changing current database*/
+
+admin> otherDB.getName();
+projects
+admin> use projects;
+switched to db projects
+projects> k=db.getCollections('projects');
+TypeError: db.getCollections is not a function
+projects> k=db.getCollection('projects');
+projects.projects
+projects> k.findOne();
+null
+projects> db.createUser({
+...     user: "testUser",
+...     pwd: "testPass",
+...     roles: [{role: "readWrite", db: "testDB"}]
+... });
+{ ok: 1 }
+projects> show users;
+[
+  {
+    _id: 'projects.testUser',
+    userId: UUID('f5f78071-0233-48d6-9bb7-3b0c90a22a9f'),
+    user: 'testUser',
+    db: 'projects',
+    roles: [ { role: 'readWrite', db: 'testDB' } ],
+    mechanisms: [ 'SCRAM-SHA-1', 'SCRAM-SHA-256' ]
+  }
+]
+projects> db.createUser({
+... user:'tnr',
+... pwd:'tnr123',
+... roles:[{role:'readWrite',db:'projects'}]
+... };/*creating new user*/
+Uncaught:
+SyntaxError: Unexpected token, expected "," (5:1)
+
+  3 | pwd:'tnr123',
+  4 | roles:[{role:'readWrite',db:'projects'}]
+> 5 | };/*creating new user*/
+    |  ^
+  6 |
+
+projects> db.createUser({
+... ... user:'tnr',
+Uncaught:
+SyntaxError: Unexpected token, expected "," (2:8)
+
+  1 | db.createUser({
+> 2 | ... user:'tnr',
+    |         ^
+  3 |
+
+projects> ... pwd:'tnr123',
+Uncaught:
+SyntaxError: Unexpected token (1:0)
+
+> 1 | ... pwd:'tnr123',
+    | ^
+  2 |
+
+projects> ... roles:[{role:'readWrite',db:'projects'}]
+Uncaught:
+SyntaxError: Unexpected token (1:0)
+
+> 1 | ... roles:[{role:'readWrite',db:'projects'}]
+    | ^
+  2 |
+
+projects> db.createUser({
+... name:'tnr',
+... pwd:'tnr123',
+... roles:[{role:'readWrite',db:'projects'}]
+... };
+Uncaught:
+SyntaxError: Unexpected token, expected "," (5:1)
+
+  3 | pwd:'tnr123',
+  4 | roles:[{role:'readWrite',db:'projects'}]
+> 5 | };
+    |  ^
+  6 |
+
+projects> db.createUser({
+... name:'tnr',
+... pwd:'tnr123',
+... roles:[{role:'readWrite',db:'projects'}]
+... });
+MongoshInvalidInputError: [COMMON-10001] Missing required property: "user"
+projects>  db.createUser({
+... ... user:'tnr',
+Uncaught:
+SyntaxError: Unexpected token, expected "," (2:8)
+
+  1 |  db.createUser({
+> 2 | ... user:'tnr',
+    |         ^
+  3 |
+
+projects> ... pwd:'tnr123',
+Uncaught:
+SyntaxError: Unexpected token (1:0)
+
+> 1 | ... pwd:'tnr123',
+    | ^
+  2 |
+
+projects> ... roles:[{role:'readWrite',db:'projects'}]
+Uncaught:
+SyntaxError: Unexpected token (1:0)
+
+> 1 | ... roles:[{role:'readWrite',db:'projects'}]
+    | ^
+  2 |
+
+projects> use projects;
+already on db projects
+projects> db.createUser({
+...   user: 'tnr',
+...   pwd: 'tnr123',
+...   roles: [{ role: 'readWrite', db: 'projects' }]
+... });
+{ ok: 1 }
+projects> show users;
+[
+  {
+    _id: 'projects.testUser',
+    userId: UUID('f5f78071-0233-48d6-9bb7-3b0c90a22a9f'),
+    user: 'testUser',
+    db: 'projects',
+    roles: [ { role: 'readWrite', db: 'testDB' } ],
+    mechanisms: [ 'SCRAM-SHA-1', 'SCRAM-SHA-256' ]
+  },
+  {
+    _id: 'projects.tnr',
+    userId: UUID('15a4dc2c-a6e6-4ea1-86c2-75eb9652b440'),
+    user: 'tnr',
+    db: 'projects',
+    roles: [ { role: 'readWrite', db: 'projects' } ],
+    mechanisms: [ 'SCRAM-SHA-1', 'SCRAM-SHA-256' ]
+  }
+]
+projects> db.changeUserPassword("testUser", "newPass");
+{ ok: 1 }
+projects> db.dropUser("testUser");
+{ ok: 1 }
+projects> show users;
+[
+  {
+    _id: 'projects.tnr',
+    userId: UUID('15a4dc2c-a6e6-4ea1-86c2-75eb9652b440'),
+    user: 'tnr',
+    db: 'projects',
+    roles: [ { role: 'readWrite', db: 'projects' } ],
+    mechanisms: [ 'SCRAM-SHA-1', 'SCRAM-SHA-256' ]
+  }
+]
+projects> db.dropAllUsers();
+{ n: 1, ok: 1 }
+projects> show users;
+[]
+projects> db.auth("testUser", "testPass");
+MongoServerError[AuthenticationFailed]: Authentication failed.
+projects> db.auth('tnr','tnr123');
+MongoServerError[AuthenticationFailed]: Authentication failed.
+projects> use projects;
+already on db projects
+projects> db.createUser({
+...   user: 'tnr',
+...   pwd: 'tnr123',
+...   roles: [{ role: 'readWrite', db: 'projects' }]
+... });
+{ ok: 1 }
+projects> show users;
+[
+  {
+    _id: 'projects.tnr',
+    userId: UUID('1b798053-081e-403b-a4f9-e4a2a61e9e90'),
+    user: 'tnr',
+    db: 'projects',
+    roles: [ { role: 'readWrite', db: 'projects' } ],
+    mechanisms: [ 'SCRAM-SHA-1', 'SCRAM-SHA-256' ]
+  }
+]
+projects> db.auth('tnr','tnr123');
+{ ok: 1 }
+projects> printjson(db.getUser("testUser"));
+null
+
+projects> printjson(db.getUser("tnr"));
+{
+  _id: 'projects.tnr',
+  userId: UUID('1b798053-081e-403b-a4f9-e4a2a61e9e90'),
+  user: 'tnr',
+  db: 'projects',
+  roles: [
+    {
+      role: 'readWrite',
+      db: 'projects'
+    }
+  ],
+  mechanisms: [
+    'SCRAM-SHA-1',
+    'SCRAM-SHA-256'
+  ]
+}
+
+projects> printjson(db.getUsers());
+{
+  users: [
+    {
+      _id: 'projects.tnr',
+      userId: UUID('1b798053-081e-403b-a4f9-e4a2a61e9e90'),
+      user: 'tnr',
+      db: 'projects',
+      roles: [
+        {
+          role: 'readWrite',
+          db: 'projects'
+        }
+      ],
+      mechanisms: [
+        'SCRAM-SHA-1',
+        'SCRAM-SHA-256'
+      ]
+    }
+  ],
+  ok: 1
+}
+
+projects> db.createView("myView", "sourceCollection", [{$match: {status: "active"}}]);
+{ ok: 1 }
+projects> show views;
+MongoshInvalidInputError: [COMMON-10001] 'views' is not a valid argument for "show".
+projects> db.find();
+TypeError: db.find is not a function
+projects> projects.find();
+ReferenceError: projects is not defined
+projects> db.findOne();
+TypeError: db.findOne is not a function
+projects> db.unicorns.insert({name: 'Horny',
+... dob: new Date(1992,2,13,7,47),
+... loves: ['carrot','papaya'],
+... weight: 600,
+... gender: 'm',
+... vampires: 63});
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('674f9e26c1687a95decdcdf6') }
+}
+projects> db.unicorns.insert({name: 'Aurora',
+... dob: new Date(1991, 0, 24, 13, 0),
+... loves: ['carrot', 'grape'],
+... weight: 450,
+... gender: 'f',
+... vampires: 43});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('674f9e26c1687a95decdcdf7') }
+}
+projects> db.unicorns.insert({name: 'Unicrom',
+... dob: new Date(1973, 1, 9, 22, 10),
+... loves: ['energon', 'redbull'],
+... weight: 984,
+... gender: 'm',
+... vampires: 182});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('674f9e27c1687a95decdcdf8') }
+}
+projects> db.unicorns.insert({name: 'Roooooodles',
+... dob: new Date(1979, 7, 18, 18, 44),
+... loves: ['apple'],
+... weight: 575,
+... gender: 'm',
+... vampires: 99});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('674f9e27c1687a95decdcdf9') }
+}
+projects> db.unicorns.insert({name: 'Solnara',
+... dob: new Date(1985, 6, 4, 2, 1),
+... loves:['apple', 'carrot',
+... 'chocolate'],
+... weight:550,
+... gender:'f',
+... vampires:80});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('674f9e2ac1687a95decdcdfa') }
+}
+projects> db.projects.find();
+
+projects> db.unicorn.find();
+
+projects> db.unicorn.find({gender:'m'});
+
+projects> use unicorn;
+switched to db unicorn
+unicorn> db.unicorn.find({gender:'m'});
+
+unicorn> show collections;
+
+unicorn> use project;
+switched to db project
+project> show collection;
+MongoshInvalidInputError: [COMMON-10001] 'collection' is not a valid argument for "show".
+project> show collections;
+product
+project> db.product.find();
+[
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74cd'),
+    p_id: 1,
+    p_name: 'Provogue Basic Watch',
+    p_cost: 599,
+    p_cat: "Men's Watch",
+    p_desc: 'Provogue Basic Watch with day and date display. Stylish brown strap and white dial.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/watch/e/v/e/1-sk-pg-4078-wyt-brwn-basic-with-day-and-date-display-provogue-original-imahffrywrx3x8zb.jpeg?q=70'
+  },
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74ce'),
+    p_id: 2,
+    p_name: 'Elegant Black Watch',
+    p_cost: 899,
+    p_cat: 'Unisex Watch',
+    p_desc: 'Classic black watch with minimalist design, suitable for both men and women.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/watch/6/n/v/-original-imagpzzk4h4eqwmf.jpeg?q=70'
+  },
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74cf'),
+    p_id: 3,
+    p_name: 'Casual Blue Watch',
+    p_cost: 499,
+    p_cat: "Men's Watch",
+    p_desc: 'Casual blue watch with a modern design, perfect for everyday wear.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/watch/i/q/e/-original-imagnre8pbpnfhgz.jpeg?q=70'
+  },
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74d0'),
+    p_id: 4,
+    p_name: 'Sporty Digital Watch',
+    p_cost: 1299,
+    p_cat: 'Sports Watch',
+    p_desc: 'Digital watch with multiple features including stopwatch, alarm, and backlight.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/watch/t/h/t/-original-imagrk9sstfxxhcd.jpeg?q=70'
+  },
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74d1'),
+    p_id: 5,
+    p_name: 'Classic Brown Leather Watch',
+    p_cost: 749,
+    p_cat: "Men's Watch",
+    p_desc: 'Classic brown leather watch with an elegant design and durable build.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/watch/9/m/k/-original-imagrk9rrpunfwvh.jpeg?q=70'
+  },
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74d2'),
+    p_id: 6,
+    p_name: 'Silver Mesh Watch',
+    p_cost: 999,
+    p_cat: 'Unisex Watch',
+    p_desc: 'Sleek silver mesh watch with a stylish and modern look, suitable for any occasion.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/watch/1/0/1/-original-imagrgwxv3apgzyq.jpeg?q=70'
+  },
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74d3'),
+    p_id: 7,
+    p_name: 'Rustet Silicone Strap Watch',
+    p_cost: 799,
+    p_cat: "Men's Watch",
+    p_desc: 'Day-date watch with the softest silicone strap for a comfortable fit.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/watch/i/5/c/1-antique-2-0-day-date-softest-silicone-strap-analog-rustet-men-original-imagyzf8ykw8vtkm.jpeg?q=70'
+  },
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74d4'),
+    p_id: 8,
+    p_name: 'Analog Blue Watch',
+    p_cost: 650,
+    p_cat: "Men's Watch",
+    p_desc: 'Stylish analog watch with a blue dial and a durable strap, perfect for casual wear.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/watch/a/k/e/-original-imagnydrewxe5qeg.jpeg?q=70'
+  },
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74d5'),
+    p_id: 9,
+    p_name: 'Black Dial Leather Watch',
+    p_cost: 899,
+    p_cat: "Men's Watch",
+    p_desc: 'Elegant black dial watch with a brown leather strap, ideal for formal occasions.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/watch/k/o/e/-original-imagzkhfeyh5gzsh.jpeg?q=70'
+  },
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74d6'),
+    p_id: 10,
+    p_name: 'Killer Black Watch',
+    p_cost: 1200,
+    p_cat: "Men's Watch",
+    p_desc: 'Sophisticated black watch with a sleek design and durable build.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/watch/2/c/v/1-kl-9301-black-killer-men-original-imagtpzhxypmkghr.jpeg?q=70'
+  },
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74d7'),
+    p_id: 11,
+    p_name: 'Vintage Brown Watch',
+    p_cost: 950,
+    p_cat: "Men's Watch",
+    p_desc: 'Vintage style brown watch with a classic look and high-quality leather strap.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/watch/3/x/u/1-kl-9200-brown-killer-men-original-imagrm9gyx8angxw.jpeg?q=70'
+  },
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74d8'),
+    p_id: 12,
+    p_name: 'Casual Black Strap Watch',
+    p_cost: 550,
+    p_cat: "Men's Watch",
+    p_desc: 'Casual watch with a black strap and a simple yet elegant design.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/watch/u/s/b/-original-imagsykvnnjsyhmm.jpeg?q=70'
+  },
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74d9'),
+    p_id: 13,
+    p_name: 'Watch Organizer Box',
+    p_cost: 499,
+    p_cat: 'Accessory',
+    p_desc: 'Watch organizer with 12 slots and a transparent lid to keep your watches safe.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/watch-box/4/z/k/watch-box-organizer-in-12-slots-of-watches-with-transparent-look-original-imagybh4fduxu65u.jpeg?q=70'
+  },
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74da'),
+    p_id: 14,
+    p_name: 'Digital Black Watch',
+    p_cost: 1099,
+    p_cat: "Men's Watch",
+    p_desc: 'Digital watch with a sleek black design and multiple functions including alarm.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/watch/q/n/n/-original-imagnvwuuk4karkd.jpeg?q=70'
+  },
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74db'),
+    p_id: 15,
+    p_name: 'Silver Dial Watch',
+    p_cost: 850,
+    p_cat: 'Unisex Watch',
+    p_desc: 'Modern silver dial watch with a stylish and contemporary look.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/watch/n/g/r/-original-imagnvwue3gx5qgh.jpeg?q=70'
+  },
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74dc'),
+    p_id: 16,
+    p_name: "Titan Women's Watch",
+    p_cost: 2999,
+    p_cat: "Women's Watch",
+    p_desc: 'Elegant Titan watch for women with a beautiful design and durable build.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/watch/q/e/c/1-95192wm01-titan-women-original-imagtmgqyzxcnqhg.jpeg?q=70'
+  },
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74dd'),
+    p_id: 17,
+    p_name: 'Provogue Gold Watch',
+    p_cost: 1800,
+    p_cat: "Men's Watch",
+    p_desc: 'Luxurious Provogue gold watch with a sleek design and elegant finish.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/watch/a/x/o/1-pglc-3001-provogue-men-original-imaghtkac7v7texd.jpeg?q=70'
+  },
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74de'),
+    p_id: 18,
+    p_name: 'Peter England Blue Watch',
+    p_cost: 1400,
+    p_cat: "Men's Watch",
+    p_desc: 'Stylish blue watch by Peter England, perfect for both casual and formal wear.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/kg6vfrk0-0/watch/c/w/2/pe000006a-peter-england-original-imafwhahggfdmzez.jpeg?q=70'
+  },
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74df'),
+    p_id: 19,
+    p_name: 'Sleek Black Analog Watch',
+    p_cost: 1250,
+    p_cat: "Men's Watch",
+    p_desc: 'Sleek black analog watch with a modern design and comfortable strap.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/xif0q/watch/o/v/o/-original-imagrk9ry8qzzbaf.jpeg?q=70'
+  },
+  {
+    _id: ObjectId('66692b8b3b3f690a303e74e0'),
+    p_id: 20,
+    p_name: 'Casio Classic Watch',
+    p_cost: 2499,
+    p_cat: "Men's Watch",
+    p_desc: 'Classic Casio watch with a timeless design and reliable performance.',
+    p_img: 'https://rukminim2.flixcart.com/image/612/612/k4rcmfk0pkrrdj/watch-refurbished/f/f/x/c-d011-casio-original-imafnnnq4pzprqz6.jpeg?q=70'
+  }
+]
+Type "it" for more
+project> db.unicorns.insert({name: 'Horny',
+... dob: new Date(1992,2,13,7,47),
+... loves: ['carrot','papaya'],
+... weight: 600,
+... gender: 'm',
+... vampires: 63});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('674f9f57c1687a95decdcdfb') }
+}
+project> db.unicorns.insert({name: 'Aurora',
+... dob: new Date(1991, 0, 24, 13, 0),
+... loves: ['carrot', 'grape'],
+... weight: 450,
+... gender: 'f',
+... vampires: 43});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('674f9f57c1687a95decdcdfc') }
+}
+project> db.unicorns.insert({name: 'Unicrom',
+... dob: new Date(1973, 1, 9, 22, 10),
+... loves: ['energon', 'redbull'],
+... weight: 984,
+... gender: 'm',
+... vampires: 182});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('674f9f57c1687a95decdcdfd') }
+}
+project> db.unicorns.insert({name: 'Roooooodles',
+... dob: new Date(1979, 7, 18, 18, 44),
+... loves: ['apple'],
+... weight: 575,
+... gender: 'm',
+... vampires: 99});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('674f9f57c1687a95decdcdfe') }
+}
+project> db.unicorns.insert({name: 'Solnara',
+... dob: new Date(1985, 6, 4, 2, 1),
+... loves:['apple', 'carrot',
+... 'chocolate'],
+... weight:550,
+... gender:'f',
+... vampires:80});
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('674f9f59c1687a95decdcdff') }
+}
+project> show collections;
+product
+unicorns
+project> db.unicorns.find();
+[
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfb'),
+    name: 'Horny',
+    dob: ISODate('1992-03-13T02:17:00.000Z'),
+    loves: [ 'carrot', 'papaya' ],
+    weight: 600,
+    gender: 'm',
+    vampires: 63
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfc'),
+    name: 'Aurora',
+    dob: ISODate('1991-01-24T07:30:00.000Z'),
+    loves: [ 'carrot', 'grape' ],
+    weight: 450,
+    gender: 'f',
+    vampires: 43
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfd'),
+    name: 'Unicrom',
+    dob: ISODate('1973-02-09T16:40:00.000Z'),
+    loves: [ 'energon', 'redbull' ],
+    weight: 984,
+    gender: 'm',
+    vampires: 182
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfe'),
+    name: 'Roooooodles',
+    dob: ISODate('1979-08-18T13:14:00.000Z'),
+    loves: [ 'apple' ],
+    weight: 575,
+    gender: 'm',
+    vampires: 99
+  },
+  {
+    _id: ObjectId('674f9f59c1687a95decdcdff'),
+    name: 'Solnara',
+    dob: ISODate('1985-07-03T20:31:00.000Z'),
+    loves: [ 'apple', 'carrot', 'chocolate' ],
+    weight: 550,
+    gender: 'f',
+    vampires: 80
+  }
+]
+project> db.unicorns.find({gender:'m'});
+[
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfb'),
+    name: 'Horny',
+    dob: ISODate('1992-03-13T02:17:00.000Z'),
+    loves: [ 'carrot', 'papaya' ],
+    weight: 600,
+    gender: 'm',
+    vampires: 63
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfd'),
+    name: 'Unicrom',
+    dob: ISODate('1973-02-09T16:40:00.000Z'),
+    loves: [ 'energon', 'redbull' ],
+    weight: 984,
+    gender: 'm',
+    vampires: 182
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfe'),
+    name: 'Roooooodles',
+    dob: ISODate('1979-08-18T13:14:00.000Z'),
+    loves: [ 'apple' ],
+    weight: 575,
+    gender: 'm',
+    vampires: 99
+  }
+]
+project> db.unicorns.findOne({gender:'m'});
+{
+  _id: ObjectId('674f9f57c1687a95decdcdfb'),
+  name: 'Horny',
+  dob: ISODate('1992-03-13T02:17:00.000Z'),
+  loves: [ 'carrot', 'papaya' ],
+  weight: 600,
+  gender: 'm',
+  vampires: 63
+}
+project> db.unicorns.findOne({gender:'m',weight:{$gt:700}});
+{
+  _id: ObjectId('674f9f57c1687a95decdcdfd'),
+  name: 'Unicrom',
+  dob: ISODate('1973-02-09T16:40:00.000Z'),
+  loves: [ 'energon', 'redbull' ],
+  weight: 984,
+  gender: 'm',
+  vampires: 182
+}
+project> db.unicorns.find({gender:'m',weight:{$gt:700}});
+[
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfd'),
+    name: 'Unicrom',
+    dob: ISODate('1973-02-09T16:40:00.000Z'),
+    loves: [ 'energon', 'redbull' ],
+    weight: 984,
+    gender: 'm',
+    vampires: 182
+  }
+]
+project> db.unicorns.find({vampires:{$exists:false}});
+
+project> db.unicorns.find({vampires:{$exists:true}});
+[
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfb'),
+    name: 'Horny',
+    dob: ISODate('1992-03-13T02:17:00.000Z'),
+    loves: [ 'carrot', 'papaya' ],
+    weight: 600,
+    gender: 'm',
+    vampires: 63
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfc'),
+    name: 'Aurora',
+    dob: ISODate('1991-01-24T07:30:00.000Z'),
+    loves: [ 'carrot', 'grape' ],
+    weight: 450,
+    gender: 'f',
+    vampires: 43
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfd'),
+    name: 'Unicrom',
+    dob: ISODate('1973-02-09T16:40:00.000Z'),
+    loves: [ 'energon', 'redbull' ],
+    weight: 984,
+    gender: 'm',
+    vampires: 182
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfe'),
+    name: 'Roooooodles',
+    dob: ISODate('1979-08-18T13:14:00.000Z'),
+    loves: [ 'apple' ],
+    weight: 575,
+    gender: 'm',
+    vampires: 99
+  },
+  {
+    _id: ObjectId('674f9f59c1687a95decdcdff'),
+    name: 'Solnara',
+    dob: ISODate('1985-07-03T20:31:00.000Z'),
+    loves: [ 'apple', 'carrot', 'chocolate' ],
+    weight: 550,
+    gender: 'f',
+    vampires: 80
+  }
+]
+project> db.unicorns.find({loves:{$in:['apple','carrot']}});
+[
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfb'),
+    name: 'Horny',
+    dob: ISODate('1992-03-13T02:17:00.000Z'),
+    loves: [ 'carrot', 'papaya' ],
+    weight: 600,
+    gender: 'm',
+    vampires: 63
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfc'),
+    name: 'Aurora',
+    dob: ISODate('1991-01-24T07:30:00.000Z'),
+    loves: [ 'carrot', 'grape' ],
+    weight: 450,
+    gender: 'f',
+    vampires: 43
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfe'),
+    name: 'Roooooodles',
+    dob: ISODate('1979-08-18T13:14:00.000Z'),
+    loves: [ 'apple' ],
+    weight: 575,
+    gender: 'm',
+    vampires: 99
+  },
+  {
+    _id: ObjectId('674f9f59c1687a95decdcdff'),
+    name: 'Solnara',
+    dob: ISODate('1985-07-03T20:31:00.000Z'),
+    loves: [ 'apple', 'carrot', 'chocolate' ],
+    weight: 550,
+    gender: 'f',
+    vampires: 80
+  }
+]
+project> db.unicorns.find({gender:'m', $or:[{weight:{$gte:700}}]});
+[
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfd'),
+    name: 'Unicrom',
+    dob: ISODate('1973-02-09T16:40:00.000Z'),
+    loves: [ 'energon', 'redbull' ],
+    weight: 984,
+    gender: 'm',
+    vampires: 182
+  }
+]
+project> db.unicorns.find({gender:'m', $or:[{weight:{$gte:700},loves:'redbull'}]});
+[
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfd'),
+    name: 'Unicrom',
+    dob: ISODate('1973-02-09T16:40:00.000Z'),
+    loves: [ 'energon', 'redbull' ],
+    weight: 984,
+    gender: 'm',
+    vampires: 182
+  }
+]
+project> db.unicorns.find(
+... {_id: ObjectId("TheObjectId")});
+BSONError: input must be a 24 character hex string, 12 byte Uint8Array, or an integer
+project> db.unicorns.update({name: 'Roooooodles'},
+... {weight: 590});/*updateing recore*/
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+MongoInvalidArgumentError: Update document requires atomic operators
+project> db.unicorns.updateOne({ name: 'Roooooodles' }, { weight: 590 }); /*updateing recore*/
+MongoInvalidArgumentError: Update document requires atomic operators
+project> db.unicorns.updateOne({ name: 'Unicrom' }, { weight: 590 }); /*updateing recore*/
+MongoInvalidArgumentError: Update document requires atomic operators
+project> db.collection.update(
+...     { gender: "m" }, // Filter
+...     { $set: { age: 8 } } // Update
+... );
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+project> db.unicorns.updateOne({gender:'m'},{$set:{wight:700}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+project> db.unicorns.findOne({weight:700});
+null
+project> db.unicorns.updateOne({gender:'m'},{$set:{weight:700}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+project> db.unicorns.findOne({weight:700});
+{
+  _id: ObjectId('674f9f57c1687a95decdcdfb'),
+  name: 'Horny',
+  dob: ISODate('1992-03-13T02:17:00.000Z'),
+  loves: [ 'carrot', 'papaya' ],
+  weight: 700,
+  gender: 'm',
+  vampires: 63,
+  wight: 700
+}
+project> db.unicorns.updateOne({weight:700},{$inc:vampires-2});
+ReferenceError: vampires is not defined
+project> db.unicorns.updateOne({weight:700},{$inc:{vampires:-2}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+project> db.unicorns.findOne({weight:700});
+{
+  _id: ObjectId('674f9f57c1687a95decdcdfb'),
+  name: 'Horny',
+  dob: ISODate('1992-03-13T02:17:00.000Z'),
+  loves: [ 'carrot', 'papaya' ],
+  weight: 700,
+  gender: 'm',
+  vampires: 61,
+  wight: 700
+}
+project> db.unicorns.updateOne({weight:700},{$dec:{vampires:-2}});
+MongoServerError: Unknown modifier: $dec. Expected a valid update modifier or pipeline-style update specified as an array
+project> db.unicorns.updateOne({weight:700},{$inc:{vampires:2}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+project> db.unicorns.findOne({weight:700});
+{
+  _id: ObjectId('674f9f57c1687a95decdcdfb'),
+  name: 'Horny',
+  dob: ISODate('1992-03-13T02:17:00.000Z'),
+  loves: [ 'carrot', 'papaya' ],
+  weight: 700,
+  gender: 'm',
+  vampires: 63,
+  wight: 700
+}
+project> db.unicorns.updateOne({weight:700},{$push:{loves:'manogo'}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+project> db.unicorns.findOne({weight:700});
+{
+  _id: ObjectId('674f9f57c1687a95decdcdfb'),
+  name: 'Horny',
+  dob: ISODate('1992-03-13T02:17:00.000Z'),
+  loves: [ 'carrot', 'papaya', 'manogo' ],
+  weight: 700,
+  gender: 'm',
+  vampires: 63,
+  wight: 700
+}
+project> db.unicorns.find({},name:1);
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:24)
+
+> 1 | db.unicorns.find({},name:1);
+    |                         ^
+  2 |
+
+project> db.unicorns.find({},{name:1});
+[
+  { _id: ObjectId('674f9f57c1687a95decdcdfb'), name: 'Horny' },
+  { _id: ObjectId('674f9f57c1687a95decdcdfc'), name: 'Aurora' },
+  { _id: ObjectId('674f9f57c1687a95decdcdfd'), name: 'Unicrom' },
+  { _id: ObjectId('674f9f57c1687a95decdcdfe'), name: 'Roooooodles' },
+  { _id: ObjectId('674f9f59c1687a95decdcdff'), name: 'Solnara' }
+]
+project> db.unicorns.find({},{name:1});//getting specific field
+[
+  { _id: ObjectId('674f9f57c1687a95decdcdfb'), name: 'Horny' },
+  { _id: ObjectId('674f9f57c1687a95decdcdfc'), name: 'Aurora' },
+  { _id: ObjectId('674f9f57c1687a95decdcdfd'), name: 'Unicrom' },
+  { _id: ObjectId('674f9f57c1687a95decdcdfe'), name: 'Roooooodles' },
+  { _id: ObjectId('674f9f59c1687a95decdcdff'), name: 'Solnara' }
+]
+project> db.unicorns.find({},{name:2});//getting specific field
+[
+  { _id: ObjectId('674f9f57c1687a95decdcdfb'), name: 'Horny' },
+  { _id: ObjectId('674f9f57c1687a95decdcdfc'), name: 'Aurora' },
+  { _id: ObjectId('674f9f57c1687a95decdcdfd'), name: 'Unicrom' },
+  { _id: ObjectId('674f9f57c1687a95decdcdfe'), name: 'Roooooodles' },
+  { _id: ObjectId('674f9f59c1687a95decdcdff'), name: 'Solnara' }
+]
+project> db.unicorns.find({},{name:1},{weight:1});//getting specific field 1 means include 0 means flase
+[
+  { _id: ObjectId('674f9f57c1687a95decdcdfb'), name: 'Horny' },
+  { _id: ObjectId('674f9f57c1687a95decdcdfc'), name: 'Aurora' },
+  { _id: ObjectId('674f9f57c1687a95decdcdfd'), name: 'Unicrom' },
+  { _id: ObjectId('674f9f57c1687a95decdcdfe'), name: 'Roooooodles' },
+  { _id: ObjectId('674f9f59c1687a95decdcdff'), name: 'Solnara' }
+]
+project> db.unicorns.find({},{name:1,weight:1});
+[
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfb'),
+    name: 'Horny',
+    weight: 700
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfc'),
+    name: 'Aurora',
+    weight: 450
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfd'),
+    name: 'Unicrom',
+    weight: 984
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfe'),
+    name: 'Roooooodles',
+    weight: 575
+  },
+  {
+    _id: ObjectId('674f9f59c1687a95decdcdff'),
+    name: 'Solnara',
+    weight: 550
+  }
+]
+project> db.unicorns.find({},{_id:0,name:1,weight:1});
+[
+  { name: 'Horny', weight: 700 },
+  { name: 'Aurora', weight: 450 },
+  { name: 'Unicrom', weight: 984 },
+  { name: 'Roooooodles', weight: 575 },
+  { name: 'Solnara', weight: 550 }
+]
+project> db.unicorns.find({ $or: [{ gender: 'm' }, { weight: { $lt: 300 } }] });
+[
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfb'),
+    name: 'Horny',
+    dob: ISODate('1992-03-13T02:17:00.000Z'),
+    loves: [ 'carrot', 'papaya', 'manogo' ],
+    weight: 700,
+    gender: 'm',
+    vampires: 63,
+    wight: 700
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfd'),
+    name: 'Unicrom',
+    dob: ISODate('1973-02-09T16:40:00.000Z'),
+    loves: [ 'energon', 'redbull' ],
+    weight: 984,
+    gender: 'm',
+    vampires: 182
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfe'),
+    name: 'Roooooodles',
+    dob: ISODate('1979-08-18T13:14:00.000Z'),
+    loves: [ 'apple' ],
+    weight: 575,
+    gender: 'm',
+    vampires: 99
+  }
+]
+project> db.unicorns.find().sort({weight: -1})
+[
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfd'),
+    name: 'Unicrom',
+    dob: ISODate('1973-02-09T16:40:00.000Z'),
+    loves: [ 'energon', 'redbull' ],
+    weight: 984,
+    gender: 'm',
+    vampires: 182
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfb'),
+    name: 'Horny',
+    dob: ISODate('1992-03-13T02:17:00.000Z'),
+    loves: [ 'carrot', 'papaya', 'manogo' ],
+    weight: 700,
+    gender: 'm',
+    vampires: 63,
+    wight: 700
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfe'),
+    name: 'Roooooodles',
+    dob: ISODate('1979-08-18T13:14:00.000Z'),
+    loves: [ 'apple' ],
+    weight: 575,
+    gender: 'm',
+    vampires: 99
+  },
+  {
+    _id: ObjectId('674f9f59c1687a95decdcdff'),
+    name: 'Solnara',
+    dob: ISODate('1985-07-03T20:31:00.000Z'),
+    loves: [ 'apple', 'carrot', 'chocolate' ],
+    weight: 550,
+    gender: 'f',
+    vampires: 80
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfc'),
+    name: 'Aurora',
+    dob: ISODate('1991-01-24T07:30:00.000Z'),
+    loves: [ 'carrot', 'grape' ],
+    weight: 450,
+    gender: 'f',
+    vampires: 43
+  }
+]
+project>
+
+project> db.unicorns.find({},{name:1,_id:0,weight:1}).sort({weight: -1})
+[
+  { name: 'Unicrom', weight: 984 },
+  { name: 'Horny', weight: 700 },
+  { name: 'Roooooodles', weight: 575 },
+  { name: 'Solnara', weight: 550 },
+  { name: 'Aurora', weight: 450 }
+]
+project> db.unicorns.find({},{name:1,_id:0,weight:1}).sort({weight: 1})
+[
+  { name: 'Aurora', weight: 450 },
+  { name: 'Solnara', weight: 550 },
+  { name: 'Roooooodles', weight: 575 },
+  { name: 'Horny', weight: 700 },
+  { name: 'Unicrom', weight: 984 }
+]
+project> db.unicorns.find({},{name:1,_id:0,weight:1}).sort({weight: 1})//ascending order
+[
+  { name: 'Aurora', weight: 450 },
+  { name: 'Solnara', weight: 550 },
+  { name: 'Roooooodles', weight: 575 },
+  { name: 'Horny', weight: 700 },
+  { name: 'Unicrom', weight: 984 }
+]
+project> db.unicorns.find({},{name:1,_id:0,weight:1}).sort({weight: -1})//descending order
+[
+  { name: 'Unicrom', weight: 984 },
+  { name: 'Horny', weight: 700 },
+  { name: 'Roooooodles', weight: 575 },
+  { name: 'Solnara', weight: 550 },
+  { name: 'Aurora', weight: 450 }
+]
+project> db.unicorns.find({},{name:1,_id:0,weight:1}).sort({weight: -1,vampires:1})//descending order
+[
+  { name: 'Unicrom', weight: 984 },
+  { name: 'Horny', weight: 700 },
+  { name: 'Roooooodles', weight: 575 },
+  { name: 'Solnara', weight: 550 },
+  { name: 'Aurora', weight: 450 }
+]
+project> db.unicorns.find({},{name:1,_id:0,weight:1,vampires:1}).sort({weight: -1,vampires:1})//descending order
+[
+  { name: 'Unicrom', weight: 984, vampires: 182 },
+  { name: 'Horny', weight: 700, vampires: 63 },
+  { name: 'Roooooodles', weight: 575, vampires: 99 },
+  { name: 'Solnara', weight: 550, vampires: 80 },
+  { name: 'Aurora', weight: 450, vampires: 43 }
+]
+project> db.unicorns.find({},{name:1,_id:0,weight:1}).sort({weight: -1,vampires:1}).limit(1)
+[ { name: 'Unicrom', weight: 984 } ]
+project> db.unicorns.find({},{name:1,_id:0,weight:1}).sort({weight: -1,vampires:1}).limit(1)//limit to top record
+[ { name: 'Unicrom', weight: 984 } ]
+project> db.unicorns.find({},{name:1,_id:0,weight:1}).sort({weight: -1,vampires:1}).limit(-1)//limit to top record
+[ { name: 'Unicrom', weight: 984 } ]
+project> db.unicorns.find({},{name:1,_id:0,weight:1}).sort({weight: -1,vampires:1}).limit(2)//limit to top record
+[ { name: 'Unicrom', weight: 984 }, { name: 'Horny', weight: 700 } ]
+project> db.unicorns.find({},{name:1,_id:0,weight:1}).sort({weight: -1,vampires:1}).limit(-2)//limit to top record
+[ { name: 'Unicrom', weight: 984 }, { name: 'Horny', weight: 700 } ]
+project> db.unicorns.find({},{name:1,_id:0,weight:1}).sort({weight: -1,vampires:1}).skip(1)
+[
+  { name: 'Horny', weight: 700 },
+  { name: 'Roooooodles', weight: 575 },
+  { name: 'Solnara', weight: 550 },
+  { name: 'Aurora', weight: 450 }
+]
+project> db.unicorns.find({},{name:1,_id:0,weight:1}).sort({weight: -1,vampires:1}).skip(2)
+[
+  { name: 'Roooooodles', weight: 575 },
+  { name: 'Solnara', weight: 550 },
+  { name: 'Aurora', weight: 450 }
+]
+project> db.unicorns.find({},{name:1,_id:0,weight:1}).sort({weight: -1,vampires:1}).skip(2)//skip k records and give from k+1 here k=2 1 indexing
+[
+  { name: 'Roooooodles', weight: 575 },
+  { name: 'Solnara', weight: 550 },
+  { name: 'Aurora', weight: 450 }
+]
+project> db.unicorns.find({},{name:1,_id:0,weight:1}).sort({weight: -1,vampires:1}).limit(1).skip(2)
+[ { name: 'Roooooodles', weight: 575 } ]
+project> db.unicorns.find({},{name:1,_id:0,weight:1}).sort({weight: -1,vampires:1}).limit(1)
+[ { name: 'Unicrom', weight: 984 } ]
+project> db.unicorns.find({},{name:1,_id:0,weight:1}).sort({weight: -1,vampires:1}).limit(1).skip(1)
+[ { name: 'Horny', weight: 700 } ]
+project> db.unicorns.count({vampires: {$gt: 50}})
+DeprecationWarning: Collection.count() is deprecated. Use countDocuments or estimatedDocumentCount.
+4
+project> db.unicorns.find().count()
+5
+project> db.unicorns.find().count()//count number of records
+5
+project> db.unicorns.find({weight:{$gte:700}}).count()//count number of records
+2
+project> db.unicorns.find({weight:{$gte:700}},{name:1,_id:0}).count()//count number of records
+2
+project> db.unicorns.find();
+[
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfb'),
+    name: 'Horny',
+    dob: ISODate('1992-03-13T02:17:00.000Z'),
+    loves: [ 'carrot', 'papaya', 'manogo' ],
+    weight: 700,
+    gender: 'm',
+    vampires: 63,
+    wight: 700
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfc'),
+    name: 'Aurora',
+    dob: ISODate('1991-01-24T07:30:00.000Z'),
+    loves: [ 'carrot', 'grape' ],
+    weight: 450,
+    gender: 'f',
+    vampires: 43
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfd'),
+    name: 'Unicrom',
+    dob: ISODate('1973-02-09T16:40:00.000Z'),
+    loves: [ 'energon', 'redbull' ],
+    weight: 984,
+    gender: 'm',
+    vampires: 182
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfe'),
+    name: 'Roooooodles',
+    dob: ISODate('1979-08-18T13:14:00.000Z'),
+    loves: [ 'apple' ],
+    weight: 575,
+    gender: 'm',
+    vampires: 99
+  },
+  {
+    _id: ObjectId('674f9f59c1687a95decdcdff'),
+    name: 'Solnara',
+    dob: ISODate('1985-07-03T20:31:00.000Z'),
+    loves: [ 'apple', 'carrot', 'chocolate' ],
+    weight: 550,
+    gender: 'f',
+    vampires: 80
+  }
+]
+project> db.unicorns.aggregate([])
+[
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfb'),
+    name: 'Horny',
+    dob: ISODate('1992-03-13T02:17:00.000Z'),
+    loves: [ 'carrot', 'papaya', 'manogo' ],
+    weight: 700,
+    gender: 'm',
+    vampires: 63,
+    wight: 700
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfc'),
+    name: 'Aurora',
+    dob: ISODate('1991-01-24T07:30:00.000Z'),
+    loves: [ 'carrot', 'grape' ],
+    weight: 450,
+    gender: 'f',
+    vampires: 43
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfd'),
+    name: 'Unicrom',
+    dob: ISODate('1973-02-09T16:40:00.000Z'),
+    loves: [ 'energon', 'redbull' ],
+    weight: 984,
+    gender: 'm',
+    vampires: 182
+  },
+  {
+    _id: ObjectId('674f9f57c1687a95decdcdfe'),
+    name: 'Roooooodles',
+    dob: ISODate('1979-08-18T13:14:00.000Z'),
+    loves: [ 'apple' ],
+    weight: 575,
+    gender: 'm',
+    vampires: 99
+  },
+  {
+    _id: ObjectId('674f9f59c1687a95decdcdff'),
+    name: 'Solnara',
+    dob: ISODate('1985-07-03T20:31:00.000Z'),
+    loves: [ 'apple', 'carrot', 'chocolate' ],
+    weight: 550,
+    gender: 'f',
+    vampires: 80
+  }
+]
+project> db.unicorns.aggregate([{$group:{_id:null,tw:{$sum:"$weight"}}}])
+[ { _id: null, tw: 3259 } ]
+project> db.unicorns.aggregate([{$group:{tw:{$sum:"$weight"}}}])
+MongoServerError[Location15955]: a group specification must include an _id
+project> db.unicorns.aggregate([{$group:{_id:null,tw:{$sum:"$weight"}}}])//calculate weight
+[ { _id: null, tw: 3259 } ]
+project> db.unicorns.aggregate([{$group:{_id:null,aw:{$avg:"$weight"}}}])//calculate average weight
+[ { _id: null, aw: 651.8 } ]
+project> db.unicorns.aggregate([
+...   {
+...     $group: {
+...       _id: "$gender",
+...       aw: { $avg: "$weight" }
+...     }
+...   }
+... ]);
+[ { _id: 'm', aw: 753 }, { _id: 'f', aw: 500 } ]
+project> db.unicorns.aggregate([
+... {
+... $group:{
+... _id:null,
+... minvalue:{$min:"$weight"},
+... maxvalue:{$max:"$weight"}
+... }
+... }
+... ]);
+[ { _id: null, minvalue: 450, maxvalue: 984 } ]
+project> dd.unicorns.aggregate([
+... {
+... $group:{
+... _id:"$gender",
+...
+... }
+... }
+... ]
+... );
+ReferenceError: dd is not defined
+project> db.unicorns.aggregate([
+... {
+... $group:{
+... _id:"$gender",
+... minvalue:{$min:"$weight"},
+... maxvalue:{$max:"$weight"}
+... }
+... }
+... ])
+[
+  { _id: 'm', minvalue: 575, maxvalue: 984 },
+  { _id: 'f', minvalue: 450, maxvalue: 550 }
+]
+project> db.unicorns.aggregate([
+...   { $match: { weight: { $gte: 700 } } },
+...   { $count: "unicornsAbove700" }
+... ]);
+[ { unicornsAbove700: 2 } ]
+project> db.unicorns.find().explain()
+{
+  explainVersion: '1',
+  queryPlanner: {
+    namespace: 'project.unicorns',
+    indexFilterSet: false,
+    parsedQuery: {},
+    queryHash: '8880B5AF',
+    planCacheKey: '8880B5AF',
+    maxIndexedOrSolutionsReached: false,
+    maxIndexedAndSolutionsReached: false,
+    maxScansToExplodeReached: false,
+    winningPlan: { stage: 'COLLSCAN', direction: 'forward' },
+    rejectedPlans: []
+  },
+  command: { find: 'unicorns', filter: {}, '$db': 'project' },
+  serverInfo: {
+    host: 'TNR',
+    port: 27017,
+    version: '7.0.11',
+    gitVersion: 'f451220f0df2b9dfe073f1521837f8ec5c208a8c'
+  },
+  serverParameters: {
+    internalQueryFacetBufferSizeBytes: 104857600,
+    internalQueryFacetMaxOutputDocSizeBytes: 104857600,
+    internalLookupStageIntermediateDocumentMaxSizeBytes: 104857600,
+    internalDocumentSourceGroupMaxMemoryBytes: 104857600,
+    internalQueryMaxBlockingSortMemoryUsageBytes: 104857600,
+    internalQueryProhibitBlockingMergeOnMongoS: 0,
+    internalQueryMaxAddToSetBytes: 104857600,
+    internalDocumentSourceSetWindowFieldsMaxMemoryBytes: 104857600,
+    internalQueryFrameworkControl: 'trySbeRestricted'
+  },
+  ok: 1
+}
+project>
